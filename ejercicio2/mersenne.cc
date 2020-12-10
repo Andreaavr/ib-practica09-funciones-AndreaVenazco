@@ -21,13 +21,47 @@
 #include "mersenne.h"
 
 using namespace std;
-	
-int main (int argc,char *argv[]){
-	usage (argc, argv);
-	int numero = atoi(argv[1]);
-      	int primo, numero_actual = 0;
-	vector <int>  vector_primo;
-	Numero_Vector (vector_primo, numero, numero_actual, primo);
-	cout << numero << " el primer numero de Mersenne es: " << Mersenne(vector_primo, numero) << endl;
-	  return 0;
+
+void usage (int argc, char* argv[]){
+        if (argc == 2 && strcmp(argv[1], "--help") == 0){
+                cout << "Este programa necesita que al compilarlo introduzca un numero" << endl;
+                exit (EXIT_SUCCESS);
+        }
+        if (argc == 1){
+                cout << "Pruebe 'ejecutable -- help' para mas informacion " << endl;
+                exit(EXIT_SUCCESS);
+        }
 }
+
+bool es_primo(int number){
+        for (int i = 2; i < number ; i++){
+                if (number % i== 0){
+                        return false;
+                }
+                return true;
+        }
+}
+
+int Numero_Vector (vector <int> &vector_primo, int numero, int numero_actual, int primo){
+        for (int i = 0; i < numero; i++){
+                do{
+                        ++numero_actual;
+                }
+                while(!es_primo(numero_actual));
+                if (es_primo(numero_actual)){
+                        primo = numero_actual;
+                        vector_primo.push_back (numero_actual);
+                        ++numero_actual;
+                }
+        }
+}
+
+int Mersenne (vector <int> &vector_primo, int numero){
+        int total = 0, elevado = 0;
+        for (int i = 0; i < numero; i++){
+                elevado = pow (2, vector_primo[i]);
+                total += elevado;
+        }
+        return total;
+}
+

@@ -15,15 +15,31 @@
 *
 * Finalmente, imprimirá el resultado de las opereaciones anteriores. 
 */
-
+	
 #include<iostream>
 #include<cstdlib>
 #include<vector>
 #include<math.h>
+#include "vector_statistics.h"
 
 using namespace std;
 
-double media (vector<double> v_media, double tamano);
-double maximo (vector<double> v_maximo, double tamano_max, double Mmaximo);
-double minimo (vector<double> v_minimo, double tamano_min, double Pminimo);
-double producto (vector<double> v_producto, double tamano, double v_M, double v_P);
+int main (int argc, char* argv[]) {
+	double	N = stoi(argv[1]), M = stoi(argv[2]), P = stoi(argv[3]);
+	double prueba, prueba1, prueba2, prueba3;
+	vector<double> v_text(N);
+	
+	for (int i = 0; i < N; i++){
+		v_text[i] = (P-M) * ((double) rand() / (double) RAND_MAX) + M;
+	}	
+	prueba = media(v_text, N);
+	prueba1 = maximo(v_text, N, M);
+	prueba2 = minimo(v_text, N, P);
+	prueba3 = producto(v_text, N, M, P);
+	cout << "La media es: " << prueba << endl;
+	cout << "El máximo es: " << prueba1 << endl;
+	cout << "El mínimo es: " << prueba2 << endl;
+	cout << "El producto es: " << prueba3 << endl;
+	return 0;
+}
+

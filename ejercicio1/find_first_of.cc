@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
-#include "find_first_of.funciones.h"
+#include "find_first_of.h"
 using namespace std;
 
 

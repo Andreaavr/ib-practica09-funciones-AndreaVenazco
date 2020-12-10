@@ -5,7 +5,7 @@ LDFLAGS =						             # The linker options (if any)
 # The all target builds all of the programs handled by the makefile.
 all: find_first_of
 
-find_first_of: find_first_of.o find_first_of.funciones.o
+find_first_of: find_first_of.o find_first_of_main.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Indicate that the all and clean targets do not
